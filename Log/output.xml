@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.5 on win32)" generated="20240228 10:52:55.286" rpa="true" schemaversion="3">
+<suite id="s1" name="Administration" source="D:\Amazon\Tests\Admin\Administration.robot">
+<test id="s1-t1" name="Search Function" line="15">
+<kw name="Begin Web Test" library="Common" type="SETUP">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Mode}</var>
+<arg>Should Contain</arg>
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20240228 10:52:55.463" level="FAIL">'D:\Amazon\Data' does not contain 'Amazons'</msg>
+<status status="FAIL" starttime="20240228 10:52:55.463" endtime="20240228 10:52:55.463"/>
+</kw>
+<msg timestamp="20240228 10:52:55.463" level="INFO">${Mode} = False</msg>
+<status status="PASS" starttime="20240228 10:52:55.463" endtime="20240228 10:52:55.463"/>
+</kw>
+<if>
+<branch type="IF" condition="${Mode}">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>headlesschrome</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" starttime="20240228 10:52:55.463" endtime="20240228 10:52:55.463"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:52:55.463" endtime="20240228 10:52:55.463"/>
+</branch>
+<branch type="ELSE">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240228 10:52:55.464" level="INFO">Opening browser 'Firefox' to base url 'about:blank'.</msg>
+<msg timestamp="20240228 10:52:55.466" level="INFO">Firefox driver log is always forced to to: D:\Amazon\Log\geckodriver-1.log</msg>
+<status status="PASS" starttime="20240228 10:52:55.463" endtime="20240228 10:53:00.920"/>
+</kw>
+<status status="PASS" starttime="20240228 10:52:55.463" endtime="20240228 10:53:00.920"/>
+</branch>
+<status status="PASS" starttime="20240228 10:52:55.463" endtime="20240228 10:53:00.920"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:01.920" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:00.920" endtime="20240228 10:53:01.920"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:01.920" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:01.920" endtime="20240228 10:53:04.912"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:53:04.912" endtime="20240228 10:53:04.944"/>
+</kw>
+<status status="PASS" starttime="20240228 10:52:55.463" endtime="20240228 10:53:04.944"/>
+</kw>
+<kw name="Get Excel Data" library="DataManager">
+<var>${AdministrationScenarios}</var>
+<arg>${Admin}</arg>
+<arg>Search_Valid</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${FilePath}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240228 10:53:04.945" level="INFO">D:\Amazon\Data\Administration\Administration.xlsx</msg>
+<status status="PASS" starttime="20240228 10:53:04.945" endtime="20240228 10:53:04.945"/>
+</kw>
+<kw name="Get Priority Colums" library="Priority">
+<var>${PRIORITY_COLUMN}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<msg timestamp="20240228 10:53:04.954" level="INFO">${PRIORITY_COLUMN} = 4</msg>
+<status status="PASS" starttime="20240228 10:53:04.945" endtime="20240228 10:53:04.954"/>
+</kw>
+<kw name="Read Excel File" library="Excel">
+<var>${Data}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<arg>${TC_PRIORITY}</arg>
+<arg>${PRIORITY_COLUMN}</arg>
+<msg timestamp="20240228 10:53:04.958" level="INFO">['1', 'Laptop', 'results for "Laptop"', "Search data with the key 'laptop'", 'CRITICAL']
+['2', 'Iphone', 'results for "Iphone"', "Search data with the key 'Iphone'", 'MEDIUM']</msg>
+<msg timestamp="20240228 10:53:04.958" level="INFO">${Data} = [['1', 'Laptop', 'results for "Laptop"', "Search data with the key 'laptop'", 'CRITICAL'], ['2', 'Iphone', 'results for "Iphone"', "Search data with the key 'Iphone'", 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:53:04.954" endtime="20240228 10:53:04.958"/>
+</kw>
+<msg timestamp="20240228 10:53:04.958" level="INFO">${AdministrationScenarios} = [['1', 'Laptop', 'results for "Laptop"', "Search data with the key 'laptop'", 'CRITICAL'], ['2', 'Iphone', 'results for "Iphone"', "Search data with the key 'Iphone'", 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:53:04.944" endtime="20240228 10:53:04.958"/>
+</kw>
+<kw name="Search Valid" library="HomeApp">
+<arg>${AdministrationScenarios}</arg>
+<for flavor="IN">
+<var>${Info}</var>
+<value>@{LoginScenarios}</value>
+<iter>
+<var name="${Info}">['1', 'Laptop', 'results for "Laptop"', "Search data with the key 'laptop'", 'CRITICAL']</var>
+<kw name="Get From List" library="Collections">
+<var>${keyword}</var>
+<arg>${Info}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20240228 10:53:04.959" level="INFO">${keyword} = Laptop</msg>
+<status status="PASS" starttime="20240228 10:53:04.959" endtime="20240228 10:53:04.959"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:04.959" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:04.959" endtime="20240228 10:53:07.246"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:08.246" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:07.246" endtime="20240228 10:53:08.246"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:53:08.246" endtime="20240228 10:53:08.255"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:53:08.255" endtime="20240228 10:53:08.538"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:10.540" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:08.539" endtime="20240228 10:53:10.540"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:04.959" endtime="20240228 10:53:10.540"/>
+</kw>
+<kw name="Attempt to Search" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Enter Search" library="HomePage">
+<arg>${Credentials}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[1]}' != '#BLANK'</arg>
+<arg>Input Text</arg>
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:10.541" level="INFO">Typing text 'Laptop' into text field 'xpath=//*[@id="twotabsearchtextbox"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:10.541" endtime="20240228 10:53:10.622"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:10.540" endtime="20240228 10:53:10.622"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:10.540" endtime="20240228 10:53:10.622"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${Search_Button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:10.622" level="INFO">Clicking button 'xpath=//*[@id="nav-search-submit-button"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:10.622" endtime="20240228 10:53:13.108"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:15.110" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:13.109" endtime="20240228 10:53:15.110"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:10.540" endtime="20240228 10:53:15.110"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>xpath=//span[contains(text(), 'results for')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:53:15.110" endtime="20240228 10:53:15.113"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>results for "${keyword}"</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:53:15.122" level="INFO">Current page contains text 'results for "Laptop"'.</msg>
+<status status="PASS" starttime="20240228 10:53:15.113" endtime="20240228 10:53:15.122"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:53:15.247" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:53:15.122" endtime="20240228 10:53:15.247"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:04.959" endtime="20240228 10:53:15.247"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:53:15.248" endtime="20240228 10:53:15.248"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:53:15.247" endtime="20240228 10:53:15.248"/>
+</branch>
+<status status="PASS" starttime="20240228 10:53:04.959" endtime="20240228 10:53:15.248"/>
+</try>
+<status status="PASS" starttime="20240228 10:53:04.958" endtime="20240228 10:53:15.248"/>
+</iter>
+<iter>
+<var name="${Info}">['2', 'Iphone', 'results for "Iphone"', "Search data with the key 'Iphone'", 'MEDIUM']</var>
+<kw name="Get From List" library="Collections">
+<var>${keyword}</var>
+<arg>${Info}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20240228 10:53:15.248" level="INFO">${keyword} = Iphone</msg>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:15.248"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:15.248" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:16.725"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:17.725" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:16.725" endtime="20240228 10:53:17.725"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:53:17.725" endtime="20240228 10:53:17.981"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:53:17.981" endtime="20240228 10:53:18.243"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:20.243" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:18.243" endtime="20240228 10:53:20.243"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:20.243"/>
+</kw>
+<kw name="Attempt to Search" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Enter Search" library="HomePage">
+<arg>${Credentials}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[1]}' != '#BLANK'</arg>
+<arg>Input Text</arg>
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:20.245" level="INFO">Typing text 'Iphone' into text field 'xpath=//*[@id="twotabsearchtextbox"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:20.244" endtime="20240228 10:53:20.289"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:20.244" endtime="20240228 10:53:20.289"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:20.244" endtime="20240228 10:53:20.289"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${Search_Button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:20.289" level="INFO">Clicking button 'xpath=//*[@id="nav-search-submit-button"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:20.289" endtime="20240228 10:53:21.649"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:23.649" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:21.649" endtime="20240228 10:53:23.649"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:20.243" endtime="20240228 10:53:23.649"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>xpath=//span[contains(text(), 'results for')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:53:23.649" endtime="20240228 10:53:23.652"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>results for "${keyword}"</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:53:23.660" level="INFO">Current page contains text 'results for "Iphone"'.</msg>
+<status status="PASS" starttime="20240228 10:53:23.652" endtime="20240228 10:53:23.660"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:53:23.758" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:53:23.660" endtime="20240228 10:53:23.758"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:23.758"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:53:23.758" endtime="20240228 10:53:23.758"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:53:23.758" endtime="20240228 10:53:23.758"/>
+</branch>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:23.758"/>
+</try>
+<status status="PASS" starttime="20240228 10:53:15.248" endtime="20240228 10:53:23.758"/>
+</iter>
+<status status="PASS" starttime="20240228 10:53:04.958" endtime="20240228 10:53:23.758"/>
+</for>
+<status status="PASS" starttime="20240228 10:53:04.958" endtime="20240228 10:53:23.758"/>
+</kw>
+<kw name="Get Excel Data" library="DataManager">
+<var>${AdministrationScenarios}</var>
+<arg>${Admin}</arg>
+<arg>Search_Invalid</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${FilePath}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240228 10:53:23.759" level="INFO">D:\Amazon\Data\Administration\Administration.xlsx</msg>
+<status status="PASS" starttime="20240228 10:53:23.759" endtime="20240228 10:53:23.759"/>
+</kw>
+<kw name="Get Priority Colums" library="Priority">
+<var>${PRIORITY_COLUMN}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<msg timestamp="20240228 10:53:23.762" level="INFO">${PRIORITY_COLUMN} = 5</msg>
+<status status="PASS" starttime="20240228 10:53:23.759" endtime="20240228 10:53:23.762"/>
+</kw>
+<kw name="Read Excel File" library="Excel">
+<var>${Data}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<arg>${TC_PRIORITY}</arg>
+<arg>${PRIORITY_COLUMN}</arg>
+<msg timestamp="20240228 10:53:23.764" level="INFO">['1', '103824320584329433310382432', 'No Result', 'No results for 103824320584329433310382432.', 'Search data with the key is invalid', 'HIGH']
+['2', '#BLANK', 'No Result', '#BLANK', 'Search data with the key is empty', 'MEDIUM']</msg>
+<msg timestamp="20240228 10:53:23.764" level="INFO">${Data} = [['1', '103824320584329433310382432', 'No Result', 'No results for 103824320584329433310382432.', 'Search data with the key is invalid', 'HIGH'], ['2', '#BLANK', 'No Result', '#BLANK', 'Search data wi...</msg>
+<status status="PASS" starttime="20240228 10:53:23.762" endtime="20240228 10:53:23.764"/>
+</kw>
+<msg timestamp="20240228 10:53:23.764" level="INFO">${AdministrationScenarios} = [['1', '103824320584329433310382432', 'No Result', 'No results for 103824320584329433310382432.', 'Search data with the key is invalid', 'HIGH'], ['2', '#BLANK', 'No Result', '#BLANK', 'Search data wi...</msg>
+<status status="PASS" starttime="20240228 10:53:23.759" endtime="20240228 10:53:23.764"/>
+</kw>
+<kw name="Search Invalid" library="HomeApp">
+<arg>${AdministrationScenarios}</arg>
+<for flavor="IN">
+<var>${Info}</var>
+<value>@{LoginScenarios}</value>
+<iter>
+<var name="${Info}">['1', '103824320584329433310382432', 'No Result', 'No results for 103824320584329433310382432.', 'Search data with the key is invalid', 'HIGH']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:23.765" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:25.183"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:26.184" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:25.183" endtime="20240228 10:53:26.184"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:53:26.184" endtime="20240228 10:53:26.443"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:53:26.444" endtime="20240228 10:53:26.706"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:28.707" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:26.707" endtime="20240228 10:53:28.707"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:28.707"/>
+</kw>
+<kw name="Attempt to Search" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Enter Search" library="HomePage">
+<arg>${Credentials}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[1]}' != '#BLANK'</arg>
+<arg>Input Text</arg>
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:28.709" level="INFO">Typing text '103824320584329433310382432' into text field 'xpath=//*[@id="twotabsearchtextbox"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:28.708" endtime="20240228 10:53:28.785"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:28.708" endtime="20240228 10:53:28.785"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:28.707" endtime="20240228 10:53:28.785"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${Search_Button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:28.786" level="INFO">Clicking button 'xpath=//*[@id="nav-search-submit-button"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:28.785" endtime="20240228 10:53:30.614"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:32.616" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:30.615" endtime="20240228 10:53:32.616"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:28.707" endtime="20240228 10:53:32.616"/>
+</kw>
+<kw name="Verify Error Messages" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[3]}' != '#BLANK'</arg>
+<arg>Page Should Contain</arg>
+<arg>${Credentials[3]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${Credentials[3]}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:53:32.622" level="INFO">Current page contains text 'No results for 103824320584329433310382432.'.</msg>
+<status status="PASS" starttime="20240228 10:53:32.616" endtime="20240228 10:53:32.622"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:32.616" endtime="20240228 10:53:32.622"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:32.616" endtime="20240228 10:53:32.622"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:53:32.671" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:53:32.622" endtime="20240228 10:53:32.671"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:32.671"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:53:32.671" endtime="20240228 10:53:32.671"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:53:32.671" endtime="20240228 10:53:32.672"/>
+</branch>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:32.672"/>
+</try>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:32.672"/>
+</iter>
+<iter>
+<var name="${Info}">['2', '#BLANK', 'No Result', '#BLANK', 'Search data with the key is empty', 'MEDIUM']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:32.672" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:32.672" endtime="20240228 10:53:35.750"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:36.751" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:35.750" endtime="20240228 10:53:36.751"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:53:36.751" endtime="20240228 10:53:37.009"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:53:37.009" endtime="20240228 10:53:37.273"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:39.274" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:37.273" endtime="20240228 10:53:39.274"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:32.672" endtime="20240228 10:53:39.274"/>
+</kw>
+<kw name="Attempt to Search" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Enter Search" library="HomePage">
+<arg>${Credentials}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[1]}' != '#BLANK'</arg>
+<arg>Input Text</arg>
+<arg>${Search_Field}</arg>
+<arg>${Credentials[1]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20240228 10:53:39.274" endtime="20240228 10:53:39.275"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:39.274" endtime="20240228 10:53:39.275"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>${Search_Button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240228 10:53:39.275" level="INFO">Clicking button 'xpath=//*[@id="nav-search-submit-button"]'.</msg>
+<status status="PASS" starttime="20240228 10:53:39.275" endtime="20240228 10:53:43.057"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:45.057" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:53:43.057" endtime="20240228 10:53:45.057"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:39.274" endtime="20240228 10:53:45.057"/>
+</kw>
+<kw name="Verify Error Messages" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Credentials[3]}' != '#BLANK'</arg>
+<arg>Page Should Contain</arg>
+<arg>${Credentials[3]}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20240228 10:53:45.058" endtime="20240228 10:53:45.058"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:45.057" endtime="20240228 10:53:45.058"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:53:45.190" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:53:45.058" endtime="20240228 10:53:45.190"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:32.672" endtime="20240228 10:53:45.190"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:53:45.190" endtime="20240228 10:53:45.190"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:53:45.190" endtime="20240228 10:53:45.190"/>
+</branch>
+<status status="PASS" starttime="20240228 10:53:32.672" endtime="20240228 10:53:45.190"/>
+</try>
+<status status="PASS" starttime="20240228 10:53:32.672" endtime="20240228 10:53:45.190"/>
+</iter>
+<status status="PASS" starttime="20240228 10:53:23.765" endtime="20240228 10:53:45.190"/>
+</for>
+<status status="PASS" starttime="20240228 10:53:23.764" endtime="20240228 10:53:45.191"/>
+</kw>
+<kw name="End Web Test" library="Common" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240228 10:53:45.191" endtime="20240228 10:53:52.223"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:45.191" endtime="20240228 10:53:52.223"/>
+</kw>
+<tag>HomePage</tag>
+<tag>HomePage_Search</tag>
+<status status="PASS" starttime="20240228 10:52:55.462" endtime="20240228 10:53:52.223"/>
+</test>
+<test id="s1-t2" name="Change Language Function" line="22">
+<kw name="Begin Web Test" library="Common" type="SETUP">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Mode}</var>
+<arg>Should Contain</arg>
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20240228 10:53:52.225" level="FAIL">'D:\Amazon\Data' does not contain 'Amazons'</msg>
+<status status="FAIL" starttime="20240228 10:53:52.225" endtime="20240228 10:53:52.226"/>
+</kw>
+<msg timestamp="20240228 10:53:52.226" level="INFO">${Mode} = False</msg>
+<status status="PASS" starttime="20240228 10:53:52.225" endtime="20240228 10:53:52.226"/>
+</kw>
+<if>
+<branch type="IF" condition="${Mode}">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>headlesschrome</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" starttime="20240228 10:53:52.226" endtime="20240228 10:53:52.226"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:53:52.226" endtime="20240228 10:53:52.226"/>
+</branch>
+<branch type="ELSE">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240228 10:53:52.226" level="INFO">Opening browser 'Firefox' to base url 'about:blank'.</msg>
+<msg timestamp="20240228 10:53:52.227" level="INFO">Firefox driver log is always forced to to: D:\Amazon\Log\geckodriver-2.log</msg>
+<status status="PASS" starttime="20240228 10:53:52.226" endtime="20240228 10:53:57.545"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:52.226" endtime="20240228 10:53:57.545"/>
+</branch>
+<status status="PASS" starttime="20240228 10:53:52.226" endtime="20240228 10:53:57.546"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:53:58.546" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:53:57.546" endtime="20240228 10:53:58.546"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:53:58.546" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:53:58.546" endtime="20240228 10:54:00.913"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:00.913" endtime="20240228 10:54:00.948"/>
+</kw>
+<status status="PASS" starttime="20240228 10:53:52.225" endtime="20240228 10:54:00.949"/>
+</kw>
+<kw name="Get Excel Data" library="DataManager">
+<var>${AdministrationScenarios}</var>
+<arg>${Admin}</arg>
+<arg>Change_Language</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${FilePath}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240228 10:54:00.950" level="INFO">D:\Amazon\Data\Administration\Administration.xlsx</msg>
+<status status="PASS" starttime="20240228 10:54:00.950" endtime="20240228 10:54:00.950"/>
+</kw>
+<kw name="Get Priority Colums" library="Priority">
+<var>${PRIORITY_COLUMN}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<msg timestamp="20240228 10:54:00.956" level="INFO">${PRIORITY_COLUMN} = 4</msg>
+<status status="PASS" starttime="20240228 10:54:00.950" endtime="20240228 10:54:00.956"/>
+</kw>
+<kw name="Read Excel File" library="Excel">
+<var>${Data}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<arg>${TC_PRIORITY}</arg>
+<arg>${PRIORITY_COLUMN}</arg>
+<msg timestamp="20240228 10:54:00.959" level="INFO">['1', 'English - EN', 'Language Settings', 'Changed language to EN', 'CRITICAL']
+['2', 'español - ES', 'Configuración de idioma', 'Changed language to ES', 'MEDIUM']</msg>
+<msg timestamp="20240228 10:54:00.959" level="INFO">${Data} = [['1', 'English - EN', 'Language Settings', 'Changed language to EN', 'CRITICAL'], ['2', 'español - ES', 'Configuración de idioma', 'Changed language to ES', 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:54:00.957" endtime="20240228 10:54:00.959"/>
+</kw>
+<msg timestamp="20240228 10:54:00.959" level="INFO">${AdministrationScenarios} = [['1', 'English - EN', 'Language Settings', 'Changed language to EN', 'CRITICAL'], ['2', 'español - ES', 'Configuración de idioma', 'Changed language to ES', 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:54:00.949" endtime="20240228 10:54:00.959"/>
+</kw>
+<kw name="Change Language" library="HomeApp">
+<arg>${AdministrationScenarios}</arg>
+<for flavor="IN">
+<var>${Info}</var>
+<value>@{LoginScenarios}</value>
+<iter>
+<var name="${Info}">['1', 'English - EN', 'Language Settings', 'Changed language to EN', 'CRITICAL']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:54:00.960" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:02.500"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:03.500" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:02.500" endtime="20240228 10:54:03.500"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:03.500" endtime="20240228 10:54:03.506"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:54:03.507" endtime="20240228 10:54:03.782"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:05.782" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:03.782" endtime="20240228 10:54:05.782"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:05.782"/>
+</kw>
+<kw name="Attempt to Change Language" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${element_exist}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${Inform_Test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Inform_Test}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20240228 10:54:05.802" level="INFO">Element 'xpath=//*[@id="glow-toaster-body"]/span' is displayed.</msg>
+<status status="PASS" starttime="20240228 10:54:05.782" endtime="20240228 10:54:05.802"/>
+</kw>
+<msg timestamp="20240228 10:54:05.802" level="INFO">${element_exist} = True</msg>
+<status status="PASS" starttime="20240228 10:54:05.782" endtime="20240228 10:54:05.802"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${element_exist}' == 'True'</arg>
+<arg>Click Element</arg>
+<arg>${Dismiss}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Dismiss}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:05.804" level="INFO">Clicking element 'xpath=//*[@id="nav-main"]/div[1]/div/div/div[3]/span[1]/span/input'.</msg>
+<status status="PASS" starttime="20240228 10:54:05.802" endtime="20240228 10:54:06.043"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:05.802" endtime="20240228 10:54:06.043"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:07.044" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:06.043" endtime="20240228 10:54:07.044"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Laguage_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:07.044" level="INFO">Clicking element 'xpath=/html/body/div[1]/header/div/div[1]/div[3]/div/a[1]/span/span[2]/span[2]'.</msg>
+<status status="PASS" starttime="20240228 10:54:07.044" endtime="20240228 10:54:08.432"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:09.433" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:08.432" endtime="20240228 10:54:09.433"/>
+</kw>
+<kw name="Changed Language" library="HomePage">
+<arg>${Credentials}</arg>
+<if>
+<branch type="IF" condition="'${Credentials[1]}' == 'English - EN'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${EN}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${EN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:09.433" level="INFO">Clicking element 'xpath=/html/body/div[1]/div[1]/div/form/div[1]/div[1]/div[2]/div/label/i'.</msg>
+<status status="PASS" starttime="20240228 10:54:09.433" endtime="20240228 10:54:09.653"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:09.433" endtime="20240228 10:54:09.653"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:09.433" endtime="20240228 10:54:09.653"/>
+</branch>
+<branch type="ELSE IF" condition="'${Credentials[1]}' == 'español - ES'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${ES}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:09.653" endtime="20240228 10:54:09.653"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:09.653" endtime="20240228 10:54:09.653"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:09.433" endtime="20240228 10:54:09.654"/>
+</if>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Changed_Language_Page}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:54:09.654" endtime="20240228 10:54:09.656"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${Credentials[2]}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:54:09.674" level="INFO">Current page contains text 'Language Settings'.</msg>
+<status status="PASS" starttime="20240228 10:54:09.656" endtime="20240228 10:54:09.674"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SaveChange_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:09.675" level="INFO">Clicking element 'xpath=//*[@id="icp-save-button"]/span/input'.</msg>
+<status status="PASS" starttime="20240228 10:54:09.674" endtime="20240228 10:54:09.896"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:11.897" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:09.896" endtime="20240228 10:54:11.897"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="pageContent"]</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20240228 10:54:11.899" level="INFO">Current page contains element 'xpath=//*[@id="pageContent"]'.</msg>
+<status status="PASS" starttime="20240228 10:54:11.897" endtime="20240228 10:54:11.899"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:09.433" endtime="20240228 10:54:11.900"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:12.900" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:11.900" endtime="20240228 10:54:12.900"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:05.782" endtime="20240228 10:54:12.900"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:54:13.035" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:54:12.900" endtime="20240228 10:54:13.035"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:13.035"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:13.035" endtime="20240228 10:54:13.035"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:13.035" endtime="20240228 10:54:13.035"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:13.035"/>
+</try>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:13.035"/>
+</iter>
+<iter>
+<var name="${Info}">['2', 'español - ES', 'Configuración de idioma', 'Changed language to ES', 'MEDIUM']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:54:13.036" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:54:13.036" endtime="20240228 10:54:14.454"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:15.455" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:14.454" endtime="20240228 10:54:15.455"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:15.455" endtime="20240228 10:54:15.712"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:54:15.713" endtime="20240228 10:54:15.979"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:17.980" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:15.979" endtime="20240228 10:54:17.980"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:13.036" endtime="20240228 10:54:17.980"/>
+</kw>
+<kw name="Attempt to Change Language" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${element_exist}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${Inform_Test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Inform_Test}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20240228 10:54:18.090" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20240228 10:54:18.090" level="FAIL">Element with locator 'xpath=//*[@id="glow-toaster-body"]/span' not found.</msg>
+<status status="FAIL" starttime="20240228 10:54:17.980" endtime="20240228 10:54:18.092"/>
+</kw>
+<msg timestamp="20240228 10:54:18.092" level="INFO">${element_exist} = False</msg>
+<status status="PASS" starttime="20240228 10:54:17.980" endtime="20240228 10:54:18.092"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${element_exist}' == 'True'</arg>
+<arg>Click Element</arg>
+<arg>${Dismiss}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20240228 10:54:18.092" endtime="20240228 10:54:18.092"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:19.094" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:18.092" endtime="20240228 10:54:19.094"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Laguage_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:19.094" level="INFO">Clicking element 'xpath=/html/body/div[1]/header/div/div[1]/div[3]/div/a[1]/span/span[2]/span[2]'.</msg>
+<status status="PASS" starttime="20240228 10:54:19.094" endtime="20240228 10:54:20.291"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:21.292" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:20.291" endtime="20240228 10:54:21.292"/>
+</kw>
+<kw name="Changed Language" library="HomePage">
+<arg>${Credentials}</arg>
+<if>
+<branch type="IF" condition="'${Credentials[1]}' == 'English - EN'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${EN}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:21.292" endtime="20240228 10:54:21.292"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:21.292" endtime="20240228 10:54:21.292"/>
+</branch>
+<branch type="ELSE IF" condition="'${Credentials[1]}' == 'español - ES'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${ES}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ES}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:21.293" level="INFO">Clicking element 'xpath=/html/body/div[1]/div[1]/div/form/div[1]/div[1]/div[3]/div/label/i'.</msg>
+<status status="PASS" starttime="20240228 10:54:21.293" endtime="20240228 10:54:21.525"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:21.293" endtime="20240228 10:54:21.525"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:21.292" endtime="20240228 10:54:21.525"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:21.292" endtime="20240228 10:54:21.525"/>
+</if>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Changed_Language_Page}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:54:21.525" endtime="20240228 10:54:21.528"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${Credentials[2]}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:54:21.543" level="INFO">Current page contains text 'Configuración de idioma'.</msg>
+<status status="PASS" starttime="20240228 10:54:21.528" endtime="20240228 10:54:21.543"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SaveChange_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:21.544" level="INFO">Clicking element 'xpath=//*[@id="icp-save-button"]/span/input'.</msg>
+<status status="PASS" starttime="20240228 10:54:21.544" endtime="20240228 10:54:21.767"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:23.767" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:21.767" endtime="20240228 10:54:23.767"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>xpath=//*[@id="pageContent"]</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20240228 10:54:23.769" level="INFO">Current page contains element 'xpath=//*[@id="pageContent"]'.</msg>
+<status status="PASS" starttime="20240228 10:54:23.767" endtime="20240228 10:54:23.769"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:21.292" endtime="20240228 10:54:23.769"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:24.771" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:23.769" endtime="20240228 10:54:24.771"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:17.980" endtime="20240228 10:54:24.771"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:54:24.886" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:54:24.771" endtime="20240228 10:54:24.886"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:13.035" endtime="20240228 10:54:24.886"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:24.886" endtime="20240228 10:54:24.886"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:24.886" endtime="20240228 10:54:24.886"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:13.035" endtime="20240228 10:54:24.886"/>
+</try>
+<status status="PASS" starttime="20240228 10:54:13.035" endtime="20240228 10:54:24.886"/>
+</iter>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:24.886"/>
+</for>
+<status status="PASS" starttime="20240228 10:54:00.960" endtime="20240228 10:54:24.886"/>
+</kw>
+<kw name="End Web Test" library="Common" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240228 10:54:24.887" endtime="20240228 10:54:31.897"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:24.887" endtime="20240228 10:54:31.897"/>
+</kw>
+<tag>HomePage</tag>
+<tag>HomePage_ChangeLanguage</tag>
+<status status="PASS" starttime="20240228 10:53:52.225" endtime="20240228 10:54:31.898"/>
+</test>
+<test id="s1-t3" name="Change Deliver Function" line="27">
+<kw name="Begin Web Test" library="Common" type="SETUP">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Mode}</var>
+<arg>Should Contain</arg>
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${DATA_DIRECTORY}</arg>
+<arg>${HEADLESS_FOLDER}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20240228 10:54:31.900" level="FAIL">'D:\Amazon\Data' does not contain 'Amazons'</msg>
+<status status="FAIL" starttime="20240228 10:54:31.899" endtime="20240228 10:54:31.900"/>
+</kw>
+<msg timestamp="20240228 10:54:31.900" level="INFO">${Mode} = False</msg>
+<status status="PASS" starttime="20240228 10:54:31.899" endtime="20240228 10:54:31.900"/>
+</kw>
+<if>
+<branch type="IF" condition="${Mode}">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>headlesschrome</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:31.900" endtime="20240228 10:54:31.900"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:31.900" endtime="20240228 10:54:31.900"/>
+</branch>
+<branch type="ELSE">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--ignore-certificate-errors");add_argument("log-level=3")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240228 10:54:31.900" level="INFO">Opening browser 'Firefox' to base url 'about:blank'.</msg>
+<msg timestamp="20240228 10:54:31.901" level="INFO">Firefox driver log is always forced to to: D:\Amazon\Log\geckodriver-3.log</msg>
+<status status="PASS" starttime="20240228 10:54:31.900" endtime="20240228 10:54:37.264"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:31.900" endtime="20240228 10:54:37.264"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:31.900" endtime="20240228 10:54:37.264"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:38.265" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:37.264" endtime="20240228 10:54:38.265"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:54:38.265" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:54:38.265" endtime="20240228 10:54:41.117"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:41.117" endtime="20240228 10:54:41.143"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:31.899" endtime="20240228 10:54:41.143"/>
+</kw>
+<kw name="Get Excel Data" library="DataManager">
+<var>${AdministrationScenarios}</var>
+<arg>${Admin}</arg>
+<arg>Change_Deliver</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${FilePath}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240228 10:54:41.145" level="INFO">D:\Amazon\Data\Administration\Administration.xlsx</msg>
+<status status="PASS" starttime="20240228 10:54:41.145" endtime="20240228 10:54:41.146"/>
+</kw>
+<kw name="Get Priority Colums" library="Priority">
+<var>${PRIORITY_COLUMN}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<msg timestamp="20240228 10:54:41.149" level="INFO">${PRIORITY_COLUMN} = 4</msg>
+<status status="PASS" starttime="20240228 10:54:41.146" endtime="20240228 10:54:41.149"/>
+</kw>
+<kw name="Read Excel File" library="Excel">
+<var>${Data}</var>
+<arg>${FilePath}</arg>
+<arg>${Worksheet}</arg>
+<arg>${TC_PRIORITY}</arg>
+<arg>${PRIORITY_COLUMN}</arg>
+<msg timestamp="20240228 10:54:41.154" level="INFO">['1', 'UnitedKingdom', 'United Kingdom', 'Changed deliver to UnitedKingdom', 'CRITICAL']
+['2', 'Vietnam', 'Vietnam', 'Changed deliver to Vietnam', 'MEDIUM']</msg>
+<msg timestamp="20240228 10:54:41.154" level="INFO">${Data} = [['1', 'UnitedKingdom', 'United Kingdom', 'Changed deliver to UnitedKingdom', 'CRITICAL'], ['2', 'Vietnam', 'Vietnam', 'Changed deliver to Vietnam', 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:54:41.150" endtime="20240228 10:54:41.154"/>
+</kw>
+<msg timestamp="20240228 10:54:41.154" level="INFO">${AdministrationScenarios} = [['1', 'UnitedKingdom', 'United Kingdom', 'Changed deliver to UnitedKingdom', 'CRITICAL'], ['2', 'Vietnam', 'Vietnam', 'Changed deliver to Vietnam', 'MEDIUM']]</msg>
+<status status="PASS" starttime="20240228 10:54:41.144" endtime="20240228 10:54:41.154"/>
+</kw>
+<kw name="Change Deliver" library="HomeApp">
+<arg>${AdministrationScenarios}</arg>
+<for flavor="IN">
+<var>${Info}</var>
+<value>@{LoginScenarios}</value>
+<iter>
+<var name="${Info}">['1', 'UnitedKingdom', 'United Kingdom', 'Changed deliver to UnitedKingdom', 'CRITICAL']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:54:41.155" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:54:44.325"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:45.325" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:44.325" endtime="20240228 10:54:45.325"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:45.325" endtime="20240228 10:54:45.334"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:54:45.335" endtime="20240228 10:54:45.618"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:47.618" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:45.618" endtime="20240228 10:54:47.618"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:54:47.618"/>
+</kw>
+<kw name="Attempt to Deliver" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:47.618" level="INFO">Clicking element 'xpath=//*[@id="nav-global-location-popover-link"]'.</msg>
+<status status="PASS" starttime="20240228 10:54:47.618" endtime="20240228 10:54:47.872"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:49.873" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:47.873" endtime="20240228 10:54:49.873"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Deliver_Page}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:54:49.873" endtime="20240228 10:54:49.876"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Choose your location</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:54:49.883" level="INFO">Current page contains text 'Choose your location'.</msg>
+<status status="PASS" starttime="20240228 10:54:49.876" endtime="20240228 10:54:49.883"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_Dropdown}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:49.883" level="INFO">Clicking element 'xpath=//*[@id="GLUXCountryListDropdown"]/span/span'.</msg>
+<status status="PASS" starttime="20240228 10:54:49.883" endtime="20240228 10:54:50.115"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:53.116" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:50.115" endtime="20240228 10:54:53.116"/>
+</kw>
+<if>
+<branch type="IF" condition="'${Credentials[1]}' == 'Vietnam'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${Deliver_Vietnam}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:53.116" endtime="20240228 10:54:53.116"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:53.116" endtime="20240228 10:54:53.116"/>
+</branch>
+<branch type="ELSE IF" condition="'${Credentials[1]}' == 'UnitedKingdom'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${Deliver_UnitedKingdom}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_UnitedKingdom}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:53.117" level="INFO">Clicking element 'xpath=//*[@id="GLUXCountryList_233"]'.</msg>
+<status status="PASS" starttime="20240228 10:54:53.117" endtime="20240228 10:54:53.346"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:53.117" endtime="20240228 10:54:53.346"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:53.116" endtime="20240228 10:54:53.346"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:53.116" endtime="20240228 10:54:53.346"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:56.347" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:53.346" endtime="20240228 10:54:56.347"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Done_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:54:56.347" level="INFO">Clicking element 'xpath=//*[@id="a-popover-1"]/div/div[2]/span/span/span/button'.</msg>
+<status status="PASS" starttime="20240228 10:54:56.347" endtime="20240228 10:54:56.578"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:47.618" endtime="20240228 10:54:56.578"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:54:56.755" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:54:56.579" endtime="20240228 10:54:56.755"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:54:56.755"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:54:56.755" endtime="20240228 10:54:56.755"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:54:56.755" endtime="20240228 10:54:56.755"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:54:56.756"/>
+</try>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:54:56.756"/>
+</iter>
+<iter>
+<var name="${Info}">['2', 'Vietnam', 'Vietnam', 'Changed deliver to Vietnam', 'MEDIUM']</var>
+<try>
+<branch type="TRY">
+<kw name="Navigate to Home Page" library="HomePage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20240228 10:54:56.757" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20240228 10:54:56.756" endtime="20240228 10:54:57.581"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:54:58.581" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240228 10:54:57.581" endtime="20240228 10:54:58.581"/>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<arg>2000</arg>
+<arg>1150</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" starttime="20240228 10:54:58.581" endtime="20240228 10:54:58.842"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240228 10:54:58.842" endtime="20240228 10:54:59.099"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:55:01.099" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:54:59.099" endtime="20240228 10:55:01.099"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:56.756" endtime="20240228 10:55:01.099"/>
+</kw>
+<kw name="Attempt to Deliver" library="HomePage">
+<arg>${Info}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:55:01.099" level="INFO">Clicking element 'xpath=//*[@id="nav-global-location-popover-link"]'.</msg>
+<status status="PASS" starttime="20240228 10:55:01.099" endtime="20240228 10:55:01.337"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:55:03.337" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240228 10:55:01.337" endtime="20240228 10:55:03.337"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Deliver_Page}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20240228 10:55:03.337" endtime="20240228 10:55:03.340"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Choose your location</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20240228 10:55:03.346" level="INFO">Current page contains text 'Choose your location'.</msg>
+<status status="PASS" starttime="20240228 10:55:03.340" endtime="20240228 10:55:03.346"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_Dropdown}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:55:03.347" level="INFO">Clicking element 'xpath=//*[@id="GLUXCountryListDropdown"]/span/span'.</msg>
+<status status="PASS" starttime="20240228 10:55:03.346" endtime="20240228 10:55:03.569"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:55:06.570" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240228 10:55:03.570" endtime="20240228 10:55:06.570"/>
+</kw>
+<if>
+<branch type="IF" condition="'${Credentials[1]}' == 'Vietnam'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${Deliver_Vietnam}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Deliver_Vietnam}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:55:06.571" level="INFO">Clicking element 'xpath=//*[@id="GLUXCountryList_239"]'.</msg>
+<status status="PASS" starttime="20240228 10:55:06.571" endtime="20240228 10:55:06.797"/>
+</kw>
+<status status="PASS" starttime="20240228 10:55:06.571" endtime="20240228 10:55:06.797"/>
+</kw>
+<status status="PASS" starttime="20240228 10:55:06.570" endtime="20240228 10:55:06.797"/>
+</branch>
+<branch type="ELSE IF" condition="'${Credentials[1]}' == 'UnitedKingdom'">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${Deliver_UnitedKingdom}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<status status="NOT RUN" starttime="20240228 10:55:06.798" endtime="20240228 10:55:06.798"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:55:06.797" endtime="20240228 10:55:06.798"/>
+</branch>
+<status status="PASS" starttime="20240228 10:55:06.570" endtime="20240228 10:55:06.798"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240228 10:55:09.798" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240228 10:55:06.798" endtime="20240228 10:55:09.798"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Done_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240228 10:55:09.799" level="INFO">Clicking element 'xpath=//*[@id="a-popover-1"]/div/div[2]/span/span/span/button'.</msg>
+<status status="PASS" starttime="20240228 10:55:09.798" endtime="20240228 10:55:10.025"/>
+</kw>
+<status status="PASS" starttime="20240228 10:55:01.099" endtime="20240228 10:55:10.025"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240228 10:55:10.177" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240228 10:55:10.025" endtime="20240228 10:55:10.177"/>
+</kw>
+<status status="PASS" starttime="20240228 10:54:56.756" endtime="20240228 10:55:10.177"/>
+</branch>
+<branch type="EXCEPT" variable="${error}">
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Fail</arg>
+<arg>${error}</arg>
+<arg>TCS Failed</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240228 10:55:10.178" endtime="20240228 10:55:10.178"/>
+</kw>
+<status status="NOT RUN" starttime="20240228 10:55:10.177" endtime="20240228 10:55:10.178"/>
+</branch>
+<status status="PASS" starttime="20240228 10:54:56.756" endtime="20240228 10:55:10.178"/>
+</try>
+<status status="PASS" starttime="20240228 10:54:56.756" endtime="20240228 10:55:10.178"/>
+</iter>
+<status status="PASS" starttime="20240228 10:54:41.155" endtime="20240228 10:55:10.178"/>
+</for>
+<status status="PASS" starttime="20240228 10:54:41.154" endtime="20240228 10:55:10.178"/>
+</kw>
+<kw name="End Web Test" library="Common" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240228 10:55:10.179" endtime="20240228 10:55:17.146"/>
+</kw>
+<status status="PASS" starttime="20240228 10:55:10.179" endtime="20240228 10:55:17.146"/>
+</kw>
+<tag>HomePage</tag>
+<tag>HomePage_ChangeDeliver</tag>
+<status status="PASS" starttime="20240228 10:54:31.899" endtime="20240228 10:55:17.146"/>
+</test>
+<status status="PASS" starttime="20240228 10:52:55.288" endtime="20240228 10:55:17.148"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+<stat pass="3" fail="0" skip="0">HomePage</stat>
+<stat pass="1" fail="0" skip="0">HomePage_ChangeDeliver</stat>
+<stat pass="1" fail="0" skip="0">HomePage_ChangeLanguage</stat>
+<stat pass="1" fail="0" skip="0">HomePage_Search</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Administration">Administration</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
